@@ -11,7 +11,10 @@ document.addEventListener("DOMContentLoaded", function(){
   let searchParams = new URLSearchParams(window.location.search);
   let cbn = searchParams.get('curr_build_num') || searchParams.get('cbn');
 
+  console.log("found cbn param: "+cbn);
+
   if (cbn) {
+    cbn = Number(cbn);
     document.querySelector('#current_build_number').value = cbn;
   }
 
