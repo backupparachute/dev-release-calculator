@@ -8,12 +8,20 @@ document.addEventListener("DOMContentLoaded", function(){
     })
   })
 
+  let searchParams = new URLSearchParams(window.location.search);
+  let cbn = searchParams.get('curr_build_num') || searchParams.get('cbn');
+
+  if (cbn) {
+    document.querySelector('#current_build_number').value = cbn;
+  }
+
   calcTotals();
 
 });
 
 function calcTotals(event) {
     console.log("calc totals...");
+
 
     let curr_build_number = Number(document.querySelector('#current_build_number').value);
 
