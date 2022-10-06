@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   if (cbn) {
     cbn = Number(cbn);
+    console.log("setting cbn = "+cbn);
     document.querySelector('#current_build_number').value = cbn;
   }
 
