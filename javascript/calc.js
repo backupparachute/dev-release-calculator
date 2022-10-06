@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function(){
   let cbn = searchParams.get('curr_build_num') || searchParams.get('cbn');
 
   console.log("found cbn param: "+cbn);
+  // bump for pages
 
   if (cbn) {
     cbn = Number(cbn);
