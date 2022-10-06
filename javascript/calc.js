@@ -23,7 +23,7 @@ function calcTotals(event) {
 
 	document.querySelector('#details td.current-day-year').innerHTML = day;
   if (Number.isFinite(avg_days_per_build)) {
-    document.querySelector('#details td.average-days-per-build').innerHTML = avg_days_per_build;
+    document.querySelector('#details td.average-days-per-build').innerHTML = avg_days_per_build.toFixed(2);
   }
 
 
