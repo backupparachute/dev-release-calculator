@@ -38,7 +38,7 @@
 		</div>
 
 		<div class="container">
-			
+
 			<div class="row">
 				<div class="col text-center">
 				    <p class="lead">Average days between dev releases</p>
@@ -46,7 +46,7 @@
 			</div>
 
 			<div class="row mt-3">
-				<div class="col-md-3">
+				<div class="col-md-6">
 					<div class="card mb-3">
 					  <div class="card-body">
 					    <h5 class="card-title">Project Metrics</h5>
@@ -54,44 +54,35 @@
 						<div class="form-group mb-3 mt-3">
 							<label for="current_build_number">Current Build Number</label><input class="form-control" type="number" name="current_build_number" value="" min="1" id="current_build_number">
 						</div>
+						<div class="form-group mb-3 mt-3">
+							<label for="current_build_number">Current Day of Year</label><input class="form-control" type="number" name="current-day-year" value="" min="1" id="current-day-year" readonly>
+						</div>
 
 					  </div>
 					</div>
 				</div>
 
+				<div class="col-md-6">
+
+			<div class="card bg-info" style="--bs-bg-opacity: .3;">
+				<div class="card-body">
+					<h5 class="card-title">Average Days Per Build
+					</h5>
+
+					<!-- <pre id="auth_header"></pre> -->
+					<input class="form-control" type="text" name="average-days-per-build" value="" id="average-days-per-build" readonly>
+
+				</div>
 			</div>
 
-
-		<div class="row mt-5">
-
-			<div class="col">
-
-
-				<table class="table">
-				  <thead>
-				    <tr>
-				      <th scope="col"></th>
-				      <th scope="col" id="current-day-year">Current Day of Year</th>
-				      <th scope="col" id="average-days-per-build">Average Days Per Build</th>
-				      <!-- <th scope="col" id="third-year-header">Second Full Year</th> -->
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr id="details">
-				      <th class="font-weight-bold">Details</th>
-				      <td class="current-day-year"></td>
-				      <td class="average-days-per-build"></td>
-				      <!-- <td class=""></td> -->
-				    </tr>
-				  </tbody>
-				</table>
-
-			</div>
 
 		</div>
 
+
+			</div>
+
 		<section class="copyright mt-5">
-      &copy;<span id="copyright_year"></span> Backup Parachute Software LLC</div>
+      &copy;<span id="copyright_year"></span> Backup Parachute Software LLC
     </section>
 
 	</div> <!-- end container -->

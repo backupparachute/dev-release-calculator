@@ -34,9 +34,9 @@ function calcTotals(event) {
 
     let avg_days_per_build = day / curr_build_number;
 
-	document.querySelector('#details td.current-day-year').innerHTML = day;
+	document.querySelector('#current-day-year').value = day;
   if (Number.isFinite(avg_days_per_build)) {
-    document.querySelector('#details td.average-days-per-build').innerHTML = avg_days_per_build.toFixed(2);
+    document.querySelector('#average-days-per-build').value = avg_days_per_build.toFixed(2);
   }
 
 
