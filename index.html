@@ -208,10 +208,7 @@ function calcTotals(event) {
 		document.querySelector('#average-days-per-build').value = avg_days_per_build.toFixed(2);
 	}
 
-
-
-	const avg = days / deploys;
-	output.textContent = `${avg.toFixed(2)} days per deploy`;
+	output.textContent = `${avg_days_per_build.toFixed(2)} days per deploy`;
 
 	let category = "", explanation = "";
 
