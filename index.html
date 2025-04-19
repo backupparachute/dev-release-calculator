@@ -192,6 +192,7 @@ document.addEventListener("DOMContentLoaded", function(){
 // Handler when the DOM is fully loaded
 const version = "v1.25.4.2"
 console.log("loading event listenr: "+version+" ....");
+setupTooltips()
 
 const dayOfYearInput = document.getElementById('current-day-year');
 if (dayOfYearInput && !dayOfYearInput.value) {
@@ -222,6 +223,20 @@ calcTotals();
 renderChart();
 
 });
+
+function setupTooltips() {
+	const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+	tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+		new bootstrap.Tooltip(tooltipTriggerEl);
+	});
+
+	// Set the actual day of year in tooltip title
+	const today = Math.floor(daysIntoYear(new Date()));
+	const tooltipEl = document.querySelector('[data-bs-toggle="tooltip"]');
+	if (tooltipEl) {
+		tooltipEl.setAttribute('title', `Today is day ${today} of the year. You can change this if you're calculating for a different date.`);
+	}
+}
 
 function renderChart() {
   const history = JSON.parse(localStorage.getItem('deployHistory'));
