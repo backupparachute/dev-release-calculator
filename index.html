@@ -197,31 +197,32 @@ function calcTotals(event) {
 	const output = document.getElementById("calcOutput");
 	const interp = document.getElementById("interpretation");
 
-	if (curr_build_number <= 0 || day <= 0) {
-		output.textContent = "Please enter valid numbers.";
-		resultSection.classList.remove("d-none");
-		return;
-	}
 
 	document.querySelector('#current-day-year').value = day;
 	if (Number.isFinite(avg_days_per_build)) {
 		document.querySelector('#average-days-per-build').value = avg_days_per_build.toFixed(2);
 	}
 
+	if (curr_build_number <= 0 || day <= 0) {
+		output.textContent = "Please enter valid numbers.";
+		resultSection.classList.remove("d-none");
+		return;
+	}
+
 	output.textContent = `${avg_days_per_build.toFixed(2)} days per deploy`;
 
 	let category = "", explanation = "";
 
-	if (avg < 2) {
+	if (avg_days_per_build < 2) {
 		category = "🧠 Elite DevOps";
 		explanation = "You’re deploying on merge with high confidence—world-class velocity.";
-	} else if (avg < 4) {
+	} else if (avg_days_per_build < 4) {
 		category = "🚀 High-Velocity Agile";
 		explanation = "You ship fast and often. Great CI/CD maturity.";
-	} else if (avg < 7) {
+	} else if (avg_days_per_build < 7) {
 		category = "🧪 Healthy Iteration";
 		explanation = "Weekly releases are solid—but you might be able to go faster.";
-	} else if (avg < 14) {
+	} else if (avg_days_per_build < 14) {
 		category = "📦 Batch Deployment";
 		explanation = "Manual steps or approval gates might be slowing you down.";
 	} else {
