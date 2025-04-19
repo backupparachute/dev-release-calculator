@@ -46,37 +46,85 @@
 			<div class="row mt-3">
 				<div class="col-md-6">
 					<div class="card mb-3">
-					  <div class="card-body">
-					    <h5 class="card-title">Project Metrics</h5>
-
-						<div class="form-group mb-3 mt-3">
-							<label for="current_build_number">Current Build Number</label><input class="form-control" type="number" name="current_build_number" value="" min="1" id="current_build_number">
+						<div class="card-body">
+							<h5 class="card-title">Project Metrics</h5>
+			
+							<div class="form-group mb-3 mt-3">
+								<label for="current_build_number">Current Build Number</label><input class="form-control" type="number"
+									name="current_build_number" value="" min="1" id="current_build_number">
+							</div>
+							<div class="form-group mb-3 mt-3">
+								<label for="current_build_number">Current Day of Year</label><input class="form-control" type="number"
+									name="current-day-year" value="" min="1" id="current-day-year" readonly>
+							</div>
+			
 						</div>
-						<div class="form-group mb-3 mt-3">
-							<label for="current_build_number">Current Day of Year</label><input class="form-control" type="number" name="current-day-year" value="" min="1" id="current-day-year" readonly>
-						</div>
-
-					  </div>
 					</div>
 				</div>
-
+			
 				<div class="col-md-6">
+			
+					<div class="card bg-info" style="--bs-bg-opacity: .3;">
+						<div class="card-body">
+							<h5 class="card-title">Average Days Per Build
+							</h5>
+			
+							<!-- <pre id="auth_header"></pre> -->
+							<input class="form-control" type="text" name="average-days-per-build" value="" id="average-days-per-build"
+								class="mb-3" readonly>
+			
+						</div>
+					</div>
 
-			<div class="card bg-info" style="--bs-bg-opacity: .3;">
-				<div class="card-body">
-					<h5 class="card-title">Average Days Per Build
-					</h5>
-
-					<!-- <pre id="auth_header"></pre> -->
-					<input class="form-control" type="text" name="average-days-per-build" value="" id="average-days-per-build" class="mb-3" readonly>
-
+					<div class="card mb-3">
+						<div class="card-body">
+							<h5 class="card-title">Deployment Cadence Benchmarks</h5>
+			
+							<table class="table table-bordered text-center">
+								<thead class="table-light">
+									<tr>
+										<th>Avg Days Between Deploys</th>
+										<th>Category</th>
+										<th>Description</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>&lt; 2</td>
+										<td>🧠 Elite DevOps</td>
+										<td>Deploy on merge, high test coverage</td>
+									</tr>
+									<tr>
+										<td>2–4</td>
+										<td>🚀 High-Velocity Agile</td>
+										<td>Strong CI/CD, mid-sprint releases</td>
+									</tr>
+									<tr>
+										<td>4–7</td>
+										<td>🧪 Healthy Iteration</td>
+										<td>Weekly deploy rhythm</td>
+									</tr>
+									<tr>
+										<td>7–14</td>
+										<td>📦 Batch Deployment</td>
+										<td>Manual QA or release gates</td>
+									</tr>
+									<tr>
+										<td>&gt; 14</td>
+										<td>🐌 Traditional Cadence</td>
+										<td>Waterfall or enterprise approval cycles</td>
+									</tr>
+								</tbody>
+							</table>
+			
+			
+						</div>
+					</div>
+			
+			
 				</div>
-			</div>
-
-
-		</div>
-
-
+			
+			
 			</div>
 
 			<div id="footer" class="row mt-5">
