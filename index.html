@@ -112,19 +112,18 @@
 			
 				<div class="col-md-6">
 			
-					<div class="card bg-info mb-3" style="--bs-bg-opacity: .3;">
+					<!-- <div class="card bg-info mb-3" style="--bs-bg-opacity: .3;">
 						<div class="card-body">
 							<h5 class="card-title">Average Days Per Build
 							</h5>
 			
-							<!-- <pre id="auth_header"></pre> -->
 							<input class="form-control" type="text" name="average-days-per-build" value="" id="average-days-per-build"
 								class="mb-3" readonly>
 			
 						</div>
-					</div>
+					</div> -->
 
-					<div class="card mb-3 d-none text-center" id="resultSection">
+					<div class="card mb-3 d-none text-center" id="resultSection" style="--bs-bg-opacity: .2;">
 						<div class="card-body">
 							<h3 class="card-title">📈 Your Deployment Frequency</h3>
 			
@@ -280,9 +279,9 @@ function calcTotals(event) {
 
 
 	document.querySelector('#current-day-year').value = day;
-	if (Number.isFinite(avg_days_per_build)) {
-		document.querySelector('#average-days-per-build').value = avg_days_per_build.toFixed(2);
-	}
+	// if (Number.isFinite(avg_days_per_build)) {
+		// document.querySelector('#average-days-per-build').value = avg_days_per_build.toFixed(2);
+	// }
 
 	if (curr_build_number <= 0 || day <= 0) {
 		output.textContent = "Please enter valid numbers.";
@@ -290,7 +289,11 @@ function calcTotals(event) {
 		return;
 	}
 
-	output.textContent = `${avg_days_per_build.toFixed(2)} days per deploy`;
+	// output.textContent = `${avg_days_per_build.toFixed(2)} days per deploy`;
+	if (Number.isFinite(avg_days_per_build)) {
+		// document.querySelector('#average-days-per-build').value = avg_days_per_build.toFixed(2);
+		output.textContent = `${avg_days_per_build.toFixed(2)} days per deploy`;
+	}
 
 	let category = "", explanation = "";
 
