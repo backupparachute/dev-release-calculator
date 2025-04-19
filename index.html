@@ -45,6 +45,7 @@
 
 			<div class="row mt-3">
 				<div class="col-md-6">
+
 					<div class="card mb-3">
 						<div class="card-body">
 							<h5 class="card-title">Project Metrics</h5>
@@ -57,21 +58,6 @@
 								<label for="current_build_number">Current Day of Year</label><input class="form-control" type="number"
 									name="current-day-year" value="" min="1" id="current-day-year" readonly>
 							</div>
-			
-						</div>
-					</div>
-				</div>
-			
-				<div class="col-md-6">
-			
-					<div class="card bg-info" style="--bs-bg-opacity: .3;">
-						<div class="card-body">
-							<h5 class="card-title">Average Days Per Build
-							</h5>
-			
-							<!-- <pre id="auth_header"></pre> -->
-							<input class="form-control" type="text" name="average-days-per-build" value="" id="average-days-per-build"
-								class="mb-3" readonly>
 			
 						</div>
 					</div>
@@ -117,6 +103,33 @@
 								</tbody>
 							</table>
 			
+			
+						</div>
+					</div>
+
+				</div>
+			
+				<div class="col-md-6">
+			
+					<div class="card bg-info mb-3" style="--bs-bg-opacity: .3;">
+						<div class="card-body">
+							<h5 class="card-title">Average Days Per Build
+							</h5>
+			
+							<!-- <pre id="auth_header"></pre> -->
+							<input class="form-control" type="text" name="average-days-per-build" value="" id="average-days-per-build"
+								class="mb-3" readonly>
+			
+						</div>
+					</div>
+
+					<div class="card mb-3 d-none text-center" id="resultSection">
+						<div class="card-body">
+							<h3 class="card-title">📈 Your Deployment Frequency</h3>
+			
+							<!-- <h2 class="mb-3">📈 Your Deployment Frequency</h2> -->
+							<p class="fs-4" id="calcOutput"></p>
+							<div id="interpretation" class="mt-4"></div>
 			
 						</div>
 					</div>
@@ -181,11 +194,48 @@ function calcTotals(event) {
 
 	let avg_days_per_build = day / curr_build_number;
 
-document.querySelector('#current-day-year').value = day;
-if (Number.isFinite(avg_days_per_build)) {
-	document.querySelector('#average-days-per-build').value = avg_days_per_build.toFixed(2);
-}
+	if (curr_build_number <= 0 || day <= 0) {
+		output.textContent = "Please enter valid numbers.";
+		resultSection.classList.remove("d-none");
+		return;
+	}
 
+	document.querySelector('#current-day-year').value = day;
+	if (Number.isFinite(avg_days_per_build)) {
+		document.querySelector('#average-days-per-build').value = avg_days_per_build.toFixed(2);
+	}
+
+	const output = document.getElementById("calcOutput");
+	const interp = document.getElementById("interpretation");
+
+	const avg = days / deploys;
+	output.textContent = `${avg.toFixed(2)} days per deploy`;
+
+	let category = "", explanation = "";
+
+	if (avg < 2) {
+		category = "🧠 Elite DevOps";
+		explanation = "You’re deploying on merge with high confidence—world-class velocity.";
+	} else if (avg < 4) {
+		category = "🚀 High-Velocity Agile";
+		explanation = "You ship fast and often. Great CI/CD maturity.";
+	} else if (avg < 7) {
+		category = "🧪 Healthy Iteration";
+		explanation = "Weekly releases are solid—but you might be able to go faster.";
+	} else if (avg < 14) {
+		category = "📦 Batch Deployment";
+		explanation = "Manual steps or approval gates might be slowing you down.";
+	} else {
+		category = "🐌 Traditional Cadence";
+		explanation = "You’re shipping less frequently. Consider breaking up changes or automating deploys.";
+	}
+
+	interp.innerHTML = `
+		<h5 class="mt-3">${category}</h5>
+		<p>${explanation}</p>
+	`;
+
+	resultSection.classList.remove("d-none");
 
 }
 
