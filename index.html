@@ -57,7 +57,20 @@
 									name="current_build_number" value="" min="1" id="current_build_number">
 							</div>
 							<div class="form-group mb-3 mt-3">
-								<label for="current-day-year">Current Day of Year</label><input class="form-control" type="number"
+								<!-- <label for="current-day-year">Current Day of Year</label> -->
+								<label for="current-day-year">
+									Current Day of Year
+									<span 
+										data-bs-toggle="tooltip" 
+										data-bs-placement="right" 
+										title="Today is day {{X}} of the year. You can change this if you're calculating for a different date.">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle ms-1" viewBox="0 0 16 16">
+											<path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
+											<path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 .876-.252 1.02-.598.07-.165.12-.365.166-.575l.088-.416c.073-.34.183-.466.49-.511l.088-.012.082-.38-2.29.287-.088-.38zm-.81-2.29c-.282 0-.51.216-.51.482 0 .267.228.483.51.483.283 0 .51-.216.51-.483 0-.266-.227-.482-.51-.482z"/>
+										</svg>
+									</span>
+								</label>
+								<input class="form-control" type="number"
 									name="current-day-year" value="" min="1" id="current-day-year" >
 							</div>
 			
@@ -180,6 +193,12 @@ document.addEventListener("DOMContentLoaded", function(){
 const version = "v1.25.4.2"
 console.log("loading event listenr: "+version+" ....");
 
+const dayOfYearInput = document.getElementById('current-day-year');
+if (dayOfYearInput && !dayOfYearInput.value) {
+  const today = daysIntoYear(new Date());
+  dayOfYearInput.value = Math.floor(today); // Avoid decimals
+}
+
 document.querySelectorAll('input').forEach(item => {
 	item.addEventListener('blur', event => {
 	calcTotals(event);
@@ -271,7 +290,8 @@ function calcTotals(event) {
 
 	let curr_build_number = Number(document.querySelector('#current_build_number').value);
 
-	let day = daysIntoYear(new Date());
+	// let day = daysIntoYear(new Date());
+	let day = Number(document.querySelector('#current-day-year').value);
 
 	let avg_days_per_build = day / curr_build_number;
 
