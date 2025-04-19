@@ -194,6 +194,9 @@ function calcTotals(event) {
 
 	let avg_days_per_build = day / curr_build_number;
 
+	const output = document.getElementById("calcOutput");
+	const interp = document.getElementById("interpretation");
+
 	if (curr_build_number <= 0 || day <= 0) {
 		output.textContent = "Please enter valid numbers.";
 		resultSection.classList.remove("d-none");
@@ -205,8 +208,7 @@ function calcTotals(event) {
 		document.querySelector('#average-days-per-build').value = avg_days_per_build.toFixed(2);
 	}
 
-	const output = document.getElementById("calcOutput");
-	const interp = document.getElementById("interpretation");
+
 
 	const avg = days / deploys;
 	output.textContent = `${avg.toFixed(2)} days per deploy`;
