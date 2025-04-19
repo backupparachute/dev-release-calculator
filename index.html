@@ -139,6 +139,8 @@
 						<div class="card-body">
 							<h3 class="card-title">Chart</h3>
 			
+							<button class="btn btn-outline-danger btn-sm" onclick="clearDeployHistory()">Clear Chart History</button>
+
 							<canvas id="deployChart" height="150" class="my-4"></canvas>
 	
 			
@@ -235,6 +237,12 @@ function renderChart() {
     }
   });
 }
+
+function clearDeployHistory() {
+  localStorage.removeItem('deployHistory');
+  location.reload();
+}
+
 
 function calcTotals(event) {
 	console.log("calc totals...");
