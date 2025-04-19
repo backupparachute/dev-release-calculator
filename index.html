@@ -56,7 +56,7 @@
 									name="current_build_number" value="" min="1" id="current_build_number">
 							</div>
 							<div class="form-group mb-3 mt-3">
-								<label for="current_build_number">Current Day of Year</label><input class="form-control" type="number"
+								<label for="current-day-year">Current Day of Year</label><input class="form-control" type="number"
 									name="current-day-year" value="" min="1" id="current-day-year" readonly>
 							</div>
 			
@@ -172,7 +172,8 @@
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function(){
 // Handler when the DOM is fully loaded
-console.log("loading event listenr...");
+const version = "v1.25.4.2"
+console.log("loading event listenr: "+version+" ....");
 
 document.querySelectorAll('input').forEach(item => {
 	item.addEventListener('blur', event => {
@@ -199,9 +200,16 @@ renderChart();
 });
 
 function renderChart() {
+  const history = JSON.parse(localStorage.getItem('deployHistory'));
+  console.log("Chart history loaded:", history); // 👈 Add this
 
-	const history = JSON.parse(localStorage.getItem('deployHistory'));
-  if (!history || history.length === 0) return;
+  if (!history || history.length === 0) {
+    console.log("No chart history to render.");
+    return;
+  }
+
+  const chartSection = document.getElementById('chartSection');
+  if (chartSection) chartSection.classList.remove("d-none");
 
   const labels = history.map((item, idx) =>
     `#${history.length - idx}: ${item.deploys} in ${item.days}d`
@@ -212,7 +220,7 @@ function renderChart() {
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: labels.reverse(), // Most recent on right
+      labels: labels.reverse(),
       datasets: [{
         label: 'Avg Days per Deploy',
         data: data.reverse(),
@@ -237,6 +245,8 @@ function renderChart() {
     }
   });
 }
+
+
 
 function clearDeployHistory() {
   localStorage.removeItem('deployHistory');
