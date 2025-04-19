@@ -170,6 +170,9 @@
 
 
 <script type="text/javascript">
+
+let chartInstance = null;
+
 document.addEventListener("DOMContentLoaded", function(){
 // Handler when the DOM is fully loaded
 const version = "v1.25.4.2"
@@ -201,7 +204,7 @@ renderChart();
 
 function renderChart() {
   const history = JSON.parse(localStorage.getItem('deployHistory'));
-  console.log("Chart history loaded:", history); // 👈 Add this
+  console.log("Chart history loaded:", history);
 
   if (!history || history.length === 0) {
     console.log("No chart history to render.");
@@ -217,7 +220,13 @@ function renderChart() {
   const data = history.map(item => parseFloat(item.average));
 
   const ctx = document.getElementById('deployChart').getContext('2d');
-  new Chart(ctx, {
+
+  // Destroy existing chart if it exists
+  if (chartInstance !== null) {
+    chartInstance.destroy();
+  }
+
+  chartInstance = new Chart(ctx, {
     type: 'line',
     data: {
       labels: labels.reverse(),
@@ -245,7 +254,6 @@ function renderChart() {
     }
   });
 }
-
 
 
 function clearDeployHistory() {
@@ -322,6 +330,9 @@ const maxItems = 10;
 if (previous.length > maxItems) previous.pop(); // Keep only 10 entries
 
 localStorage.setItem('deployHistory', JSON.stringify(previous));
+
+renderChart(); // 🔁 Force chart update with the new data point
+
 
 }
 
