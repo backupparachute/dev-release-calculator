@@ -331,7 +331,7 @@ function clearDeployHistory() {
 function calcTotals(event) {
 	console.log("calc totals...");
 
-	const resultSection = document.getElementById("resultSection");
+	// const resultSection = document.getElementById("resultSection");
 
 	let curr_build_number = Number(document.querySelector('#current_build_number').value);
 
@@ -350,8 +350,8 @@ function calcTotals(event) {
 	// }
 
 	if (curr_build_number <= 0 || day <= 0) {
-		// output.textContent = "Please enter valid numbers.";
-		resultSection.classList.remove("d-none");
+		output.textContent = "Please enter valid numbers.";
+		// resultSection.classList.remove("d-none");
 		return;
 	}
 
@@ -385,7 +385,7 @@ function calcTotals(event) {
 		<p>${explanation}</p>
 	`;
 
-	resultSection.classList.remove("d-none");
+	// resultSection.classList.remove("d-none");
 
 	// After calculating 'avg'
 const lastCalc = {
